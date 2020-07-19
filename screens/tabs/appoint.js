@@ -8,7 +8,10 @@ export default class appoint extends Component {
         return (
 <View style={styles.container}>
 
-    <TouchableOpacity style={styles.addBtn}>
+    <TouchableOpacity 
+    style={styles.addBtn}
+    onPress={()=>this.props.navigation.push('Appoint')}
+    >
         <FontAwesome style={{ paddingLeft: 10 }} name='calendar' size={38} color='black' />
         <Ionicons style={{ position: 'absolute', left: '0%' }} name="md-add" size={29} color="black" />
     </TouchableOpacity>
@@ -34,7 +37,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         right:'5%',
         bottom:'5%',
-        backgroundColor: '#ff3d00',
+        backgroundColor: '#ff7539',
         justifyContent: 'center',
         alignItems: 'center',
         shadowColor: "#000",

@@ -8,6 +8,7 @@ const button = (props) => {
             onPress={props.onPress}
             loading={props.loading}
             style={{
+                marginTop:25,
                 width: props.width, justifyContent: 'center', shadowColor: "#000",
                 shadowOffset: {
                     width: 0,

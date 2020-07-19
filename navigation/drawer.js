@@ -10,7 +10,9 @@ import { FontAwesome5 } from '@expo/vector-icons';
 import Tabs from '../screens/tabs/_homeTabs';
 import FavTabs from '../screens/tabs/_FavTabs'
 import SideBar from '../components/sideBar';
-import Add from '../screens/add'
+import Add from '../screens/add';
+
+import Appointments from '../screens/appointmets';
 
 const Appdrawer = createDrawerNavigator();
 const stack = createStackNavigator();
@@ -64,7 +66,9 @@ export class homeTabsStack extends Component {
                     headerTitleStyle: { fontWeight: '100' },
                 }}
             >
-                <stack.Screen name='tabs' component={Tabs} options={{ title: 'Accuiel' }} />
+                <stack.Screen name='tabs' component={Tabs} options={{ title: 'Accueil' }} />
+                <stack.Screen name='Appoint' component={Appointments} options={{ title: 'Rendez-vous' }} />
+                
             </stack.Navigator>
         )
     }
@@ -107,6 +111,7 @@ export class addStack extends Component {
             >
 
             <stack.Screen name='add' component={Add} options={{ title: 'Ajouter' }}/>
+            <stack.Screen name='Appoint' component={Appointments} options={{ title: 'Rendez-vous' }}/>
             </stack.Navigator>
         )
     }

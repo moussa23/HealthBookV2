@@ -32,9 +32,19 @@ const styles = StyleSheet.create({
         position: 'absolute',
         bottom: 20,
         right: 13,
-        backgroundColor: '#ff3d00',
+        backgroundColor: '#ff7539',
         justifyContent:'center',
-        alignItems:'center'
+        alignItems:'center',
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2,
+            
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+
+        elevation: 8,
     },
     title:{
         fontSize:25,

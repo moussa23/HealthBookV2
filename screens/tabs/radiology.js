@@ -9,8 +9,8 @@ export default class radiology extends Component {
         return (
             <View style={styles.container}>                
                     <TouchableOpacity style={styles.addBtn}>
-                    <FontAwesome5  name="x-ray" size={30} color={'black'} />
-                    <Ionicons style={{ position: 'absolute',left:0}} name="md-add" size={29} color="black" />
+                    <FontAwesome5 style={{paddingLeft:10}} name="x-ray" size={30} color={'black'} />
+                    <Ionicons style={{ position: 'absolute',left:2}} name="md-add" size={29} color="black" />
                     </TouchableOpacity>
             </View>
         )
@@ -32,9 +32,21 @@ const styles = StyleSheet.create({
         position: 'absolute',
         bottom: 20,
         right: 13,
-        backgroundColor: '#ff3d00',
+        backgroundColor: '#ff7539',
         justifyContent:'center',
-        alignItems:'center'
+        alignItems:'center',
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2,
+            
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+
+        elevation: 8,
+
+
     },
     title:{
         fontSize:25,
