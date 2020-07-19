@@ -6,7 +6,6 @@ import Appoint from './appoint';
 import Analysis from './analysis';
 import Radiology from './radiology';
 import Surgey from './surgey';
-import Map from './map.js';
 
 
 const tabs = createMaterialTopTabNavigator();
@@ -20,11 +19,9 @@ export default class _homeTabs extends Component {
                 <tabs.Screen name='analy'  component={Analysis} />
                 <tabs.Screen name='radio'  component={Radiology} />
                 <tabs.Screen name='suregey'  component={Surgey} />
-                <tabs.Screen name='map'  component={Map} />
             </tabs.Navigator>
         
         );
-        
         
     }
 }

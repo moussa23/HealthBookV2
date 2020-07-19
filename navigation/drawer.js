@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import {
     createDrawerNavigator,
-    DrawerContentScrollView,
-    DrawerItemList,
+
 } from '@react-navigation/drawer';
 import { createStackNavigator } from '@react-navigation/stack';
 import { FontAwesome5 } from '@expo/vector-icons';
@@ -11,6 +10,7 @@ import Tabs from '../screens/tabs/_homeTabs';
 import FavTabs from '../screens/tabs/_FavTabs'
 import SideBar from '../components/sideBar';
 import Add from '../screens/add';
+import Map from '../screens/map'
 
 import Appointments from '../screens/appointmets';
 
@@ -35,7 +35,7 @@ export default class drawer extends Component {
                         title: 'Accuiel',
                         drawerIcon: () => <FontAwesome5 name="file-medical" size={30} color="black" />
                     }} />
-               <Appdrawer.Screen name='add' component={addStack}
+                <Appdrawer.Screen name='add' component={addStack}
                     options={{
                         title: 'Ajouter',
                         drawerIcon: () => <FontAwesome5 name="plus-circle" size={30} color="black" />
@@ -44,6 +44,11 @@ export default class drawer extends Component {
                     options={{
                         title: 'Favoris',
                         drawerIcon: () => <FontAwesome5 name="heart" size={30} color="black" />
+                    }} />
+                <Appdrawer.Screen name='map' component={Map}
+                    options={{
+                        title: 'Location',
+                        drawerIcon: () => <FontAwesome5 name="search" size={30} color="black" />
                     }} />
 
             </Appdrawer.Navigator>
@@ -64,11 +69,12 @@ export class homeTabsStack extends Component {
                     headerTitleAlign: 'center',
                     headerTintColor: '#fff',
                     headerTitleStyle: { fontWeight: '100' },
+
                 }}
             >
                 <stack.Screen name='tabs' component={Tabs} options={{ title: 'Accueil' }} />
                 <stack.Screen name='Appoint' component={Appointments} options={{ title: 'Rendez-vous' }} />
-                
+                <stack.Screen name='map' component={Map} options={{ title: 'Location' }} />
             </stack.Navigator>
         )
     }
@@ -95,23 +101,22 @@ export class favTabsStack extends Component {
 }
 
 export class addStack extends Component {
-    render(){
-        return(
-            <stack.Navigator 
-            screenOptions={{
-                gestureDirection: 'horizontal',
-                headerStyle: {
-                    backgroundColor: '#00695c',
-                },
-                headerTitleAlign: 'center',
-                headerTintColor: '#fff',
-                headerTitleStyle: { fontWeight: '100' },
-
-            }}
+    render() {
+        return (
+            <stack.Navigator
+                screenOptions={{
+                    gestureDirection: 'horizontal',
+                    headerStyle: {
+                        backgroundColor: '#00695c',
+                    },
+                    headerTitleAlign: 'center',
+                    headerTintColor: '#fff',
+                    headerTitleStyle: { fontWeight: '100' },
+                }}
             >
+                <stack.Screen name='add' component={Add} options={{ title: 'Ajouter' }} />
+                <stack.Screen name='Appoint' component={Appointments} options={{ title: 'Rendez-vous' }} />
 
-            <stack.Screen name='add' component={Add} options={{ title: 'Ajouter' }}/>
-            <stack.Screen name='Appoint' component={Appointments} options={{ title: 'Rendez-vous' }}/>
             </stack.Navigator>
         )
     }
