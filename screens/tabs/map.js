@@ -4,7 +4,7 @@ import { Ionicons, FontAwesome } from '@expo/vector-icons';
 import { Image, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View, Dimensions, TextInput } from 'react-native';
 const { width, height } = Dimensions.get('screen');
 
-class Header extends React.Component {
+/*class Header extends React.Component {
     render() {
         return (
             <Image
@@ -13,7 +13,7 @@ class Header extends React.Component {
             />
         );
     }
-}
+}*/
 export default class map extends Component {
     constructor() {
         super()
@@ -169,7 +169,7 @@ const styles = StyleSheet.create({
     },
     activeTab: {
         borderBottomColor: 'orange',
-        borderBottomWidth: '3'
+        borderBottomWidth: 3
     },
     activeTabTitle: {
         color: 'orange'
