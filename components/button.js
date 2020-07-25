@@ -9,7 +9,7 @@ const button = (props) => {
             loading={props.loading}
             style={{
                 marginTop:25,
-                width: props.width, justifyContent: 'center', shadowColor: "#000",
+                width: props.width, justifyContent: 'center', shadowColor: "#000",alignSelf:'center',
                 shadowOffset: {
                     width: 0,
                     height: 10,

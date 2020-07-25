@@ -8,7 +8,6 @@ const textInput = (props) => {
     return (
         <View >
             <TextInput
-
                 returnKeyType='next'
                 onSubmitEditing={props.submit}
                 autoCapitalize='none'
@@ -16,6 +15,7 @@ const textInput = (props) => {
                 onChangeText={props.onTextChange}
                 secureTextEntry={props.secure}
                 keyboardType={props.type}
+                
                 style={{fontSize: 20, fontWeight: props.weight, paddingLeft: props.padding, marginTop: 30, height: props.height }}
                 theme={{
                     colors: { primary: '#ff7539', background: 'rgba(0,0,0,0.1)', placeholder: 'rgba(0,0,0,0.3)' },

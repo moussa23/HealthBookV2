@@ -61,7 +61,7 @@ export default class map extends Component {
         return (
             <View style={styles.map}>
                 <MapView
-                    style={{ flex: 1, height: height * 0.5, width }}
+                    style={{ flex: 1, height: height * 0.7, width }}
                     initialRegion={{
                         latitude: 35.7382557,
                         longitude: -5.8657211,
@@ -161,6 +161,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         flexDirection: 'row',
         height: height * 0.05,
+        borderWidth:1,
+        
+        
 
     },
     tab: {

@@ -32,10 +32,10 @@ export default class _homeTabs extends Component {
         }
     }
     render() {
-        return (
+        return(
             <tabs.Navigator
                 initialRouteName='appoint'
-                swipeEnabled={true}
+                swipeEnabled={false}
                 screenOptions={({ route }) =>
                     ({
                         tabBarIcon: ({ focused }) => {
