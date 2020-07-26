@@ -4,13 +4,14 @@ import {
 
 } from '@react-navigation/drawer';
 import { createStackNavigator } from '@react-navigation/stack';
-import { FontAwesome5,Entypo } from '@expo/vector-icons';
+import { FontAwesome5, Entypo } from '@expo/vector-icons';
 
 import Tabs from '../screens/tabs/_homeTabs';
 import FavTabs from '../screens/tabs/_FavTabs'
 import SideBar from '../components/sideBar';
 import Add from '../screens/add';
-import Map from '../screens/map'
+import Map from '../screens/map';
+import Profile from '../screens/profile'
 
 import Appointments from '../screens/appointmets';
 import { Text, TouchableOpacity } from 'react-native'
@@ -51,6 +52,11 @@ export default class drawer extends Component {
                         title: 'Location',
                         drawerIcon: () => <FontAwesome5 name="search" size={30} color="black" />
                     }} />
+                <Appdrawer.Screen name='prof' component={Profile}
+                    options={{
+                        title: 'Profile',
+                        drawerIcon: () => <FontAwesome5 name="user" size={30} color="black" />
+                    }} />
 
             </Appdrawer.Navigator>
         )
@@ -72,7 +78,7 @@ export class homeTabsStack extends Component {
                     headerTitleStyle: { fontWeight: '100' },
                     headerLeft: () =>
                         (
-                            <TouchableOpacity style={{marginHorizontal:10}} onPress={this.props.navigation.openDrawer} >
+                            <TouchableOpacity style={{ marginHorizontal: 10 }} onPress={this.props.navigation.openDrawer} >
                                 <Entypo name="menu" size={45} color="#fff" />
                             </TouchableOpacity>
                         )
@@ -98,11 +104,11 @@ export class favTabsStack extends Component {
                     headerTintColor: '#fff',
                     headerTitleStyle: { fontWeight: '100' },
                     headerLeft: () =>
-                    (
-                        <TouchableOpacity style={{marginHorizontal:10}} onPress={this.props.navigation.openDrawer} >
-                            <Entypo name="menu" size={45} color="#fff" />
-                        </TouchableOpacity>
-                    )
+                        (
+                            <TouchableOpacity style={{ marginHorizontal: 10 }} onPress={this.props.navigation.openDrawer} >
+                                <Entypo name="menu" size={45} color="#fff" />
+                            </TouchableOpacity>
+                        )
                 }}
             >
                 <stack.Screen name='fav' component={FavTabs} options={{ title: 'Favoris' }} />
@@ -124,11 +130,11 @@ export class addStack extends Component {
                     headerTintColor: '#fff',
                     headerTitleStyle: { fontWeight: '100' },
                     headerLeft: () =>
-                    (
-                        <TouchableOpacity style={{marginHorizontal:10}} onPress={this.props.navigation.openDrawer} >
-                            <Entypo name="menu" size={45} color="#fff" />
-                        </TouchableOpacity>
-                    )
+                        (
+                            <TouchableOpacity style={{ marginHorizontal: 10 }} onPress={this.props.navigation.openDrawer} >
+                                <Entypo name="menu" size={45} color="#fff" />
+                            </TouchableOpacity>
+                        )
                 }}
             >
                 <stack.Screen name='add' component={Add} options={{ title: 'Ajouter' }} />

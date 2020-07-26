@@ -1,34 +1,52 @@
 import React, { Component } from 'react'
 import { Text, StyleSheet, View, Image, Alert, ScrollView } from 'react-native';
-import { Ionicons, FontAwesome } from '@expo/vector-icons';
-import { Switch, TextInput, RadioButton } from 'react-native-paper';
+import { FontAwesome } from '@expo/vector-icons';
+import {  TextInput, RadioButton } from 'react-native-paper';
 import logo from '../assets/logo.png';
-import { Entypo } from '@expo/vector-icons';
-import AppInput from '../components/textInput';
 import AppButton from '../components/button';
+import {auth,db} from '../API/firebase'
 export default class signUp extends Component {
     constructor(props) {
         super(props);
         this.state = {
-
             checked: 'first',
             mail: '',
             password: '',
             nom: '',
             prenom: '',
             date: '',
-            pays: '',
-            ville: '',
+            tel: '',
             confirmation: '',
-            masculin: '',
-            feminim: '',
             showPass: true,
+        }
+    }
+
+    registerUser=()=>{
+        const {password,confirmation,mail,nom} = this.state
+        if(password!=confirmation) Alert.alert('Warning','Le mot de passe ne correspond pas')
+        else {
+            auth.createUserWithEmailAndPassword(mail.trim(),password)
+            .catch((err)=>console.log(err))
+            .then((userInfo)=>{
+                return userInfo.user.updateProfile({
+                    displayName:nom,
+                })
+            })
+            if(auth.currentUser) {
+                const uid = auth.currentUser.uid
+                db.ref('users/'+uid+"/info").push({
+                    lastName:nom,
+                    firstName:this.state.prenom,
+                    gender:this.state.checked,
+                    phone:this.state.tel,
+                    birth:this.state.date
+                })
+            }
         }
     }
 
     render() {
         const { checked } = this.state;
-
         return (
             <ScrollView>
                 <View style={styles.container}>
@@ -95,7 +113,7 @@ export default class signUp extends Component {
                         placeholder=''
                         autoCapitalize='none'
                         underlineColorAndroid='transparent'
-                        onChangeText={(ville) => this.setState({ ville })}
+                        onChangeText={(tel) => this.setState({ tel })}
                         value={this.state.ville}
                     />
                     <Text style={{ fontSize: 16, marginTop: 10 }} >
@@ -110,7 +128,7 @@ export default class signUp extends Component {
                         placeholder=''
                         autoCapitalize='none'
                         underlineColorAndroid='transparent'
-                        onChangeText={(email) => this.setState({ email })}
+                        onChangeText={(mail) => this.setState({ mail })}
                         value={this.state.email}
                     />
                     <Text style={{ fontSize: 16, marginTop: 10 }} >
@@ -164,12 +182,11 @@ export default class signUp extends Component {
 
                     <AppButton
                         height={40}
-                        onPress={() => this.loginUser()}
+                        onPress={() =>this.registerUser()}
                         loading={this.state.loading}
                         title='Enregistrer'
                         width='60%'
                     />
-
 
                 </View>
             </ScrollView>
