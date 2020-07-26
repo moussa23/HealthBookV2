@@ -18,10 +18,12 @@ export default class signUp extends Component {
             tel: '',
             confirmation: '',
             showPass: true,
+            loading:false,
         }
     }
 
     registerUser=()=>{
+        this.toggleLoading()
         const {password,confirmation,mail,nom} = this.state
         if(password!=confirmation) Alert.alert('Warning','Le mot de passe ne correspond pas')
         else {
@@ -31,20 +33,26 @@ export default class signUp extends Component {
                 return userInfo.user.updateProfile({
                     displayName:nom,
                 })
+            }).then(()=>{
+                if(auth.currentUser) {
+                    const uid = auth.currentUser.uid
+                    db.ref('users/'+uid+"/info").push({
+                        lastName:nom,
+                        firstName:this.state.prenom,
+                        gender:this.state.checked,
+                        phone:this.state.tel,
+                        birth:this.state.date
+                    })
+                    this.toggleLoading()
+                }
             })
-            if(auth.currentUser) {
-                const uid = auth.currentUser.uid
-                db.ref('users/'+uid+"/info").push({
-                    lastName:nom,
-                    firstName:this.state.prenom,
-                    gender:this.state.checked,
-                    phone:this.state.tel,
-                    birth:this.state.date
-                })
-            }
+
         }
     }
 
+    toggleLoading = ()=>{
+        this.setState({loading:!this.state.loading})
+    }
     render() {
         const { checked } = this.state;
         return (
@@ -92,6 +100,7 @@ export default class signUp extends Component {
                             colors: { primary: '#ff7539', background: 'rgba(0,0,0,0.1)', placeholder: 'rgba(0,0,0,0.3)' },
                             animation: { scale: 2 },
                         }}
+                        keyboardType='decimal-pad'
                         label='date de naissance'
                         style={styles.input}
                         placeholder=''
@@ -170,15 +179,13 @@ export default class signUp extends Component {
                                 value="Masculin"
                                 status={checked === 'Masculin' ? 'checked' : 'unchecked'}
                                 onPress={() => { this.setState({ checked: 'Masculin' }); }}
-                            /><Text style={styles.genderText} >
-                                 <FontAwesome style={{ paddingLeft: 10 }} name='venus-mars' size={30} color='#00695c' /> Masculin </Text>
+                            /><Text style={styles.genderText} > Masculin </Text>
                             <RadioButton
                                 theme={{ colors: { accent: '#ff7539' } }}
                                 value="Feminin"
                                 status={checked === 'Feminin' ? 'checked' : 'unchecked'}
                                 onPress={() => { this.setState({ checked: 'Feminin' }); }}
-                            /><Text style={styles.genderText} >
-                                <FontAwesome style={{ paddingLeft: 10 }} name='venus-mars' size={30} color='#00695c' /> Feminin </Text>
+                            /><Text style={styles.genderText} > Feminin </Text>
                         </RadioButton.Group>
                     </View>
 
@@ -188,6 +195,7 @@ export default class signUp extends Component {
                         loading={this.state.loading}
                         title='Enregistrer'
                         width='60%'
+                        loading={this.state.loading}
                     />
 
                 </View>

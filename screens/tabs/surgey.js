@@ -4,7 +4,7 @@ import { Ionicons, Fontisto, AntDesign } from '@expo/vector-icons';
 import AppButton from '../../components/button'
 import AppInput from '../../components/textInput'
 import Modal from 'react-native-modal';
-import { db } from '../../API/firebase';
+import { db,auth } from '../../API/firebase';
 import IMG from '../../assets/surgery.png';
 import moment from 'moment'
 import DateTimePicker from 'react-native-modal-datetime-picker';
@@ -14,7 +14,8 @@ import Swipeout from 'react-native-swipeout';
 
 
 export default class surgey extends Component {
-    surgeyRef = db.ref('users/UID/surgey')
+    user=auth.currentUser
+    surgeyRef = db.ref('users/'+this.user.uid+'/surgey')
     constructor() {
         super();
         this.state = {

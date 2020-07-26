@@ -9,9 +9,11 @@ import logo from '../assets/calendar.png';
 
 import AppButton from '../components/button';
 
-import { db } from '../API/firebase';
+import { db,auth } from '../API/firebase';
 
 export default class appointmets extends Component {
+    user = auth.currentUser
+    appointRef = db.ref('users/'+this.user.uid+'/appointments')
     constructor() {
         super()
         this.state = {
@@ -67,7 +69,7 @@ export default class appointmets extends Component {
             time: this.state.time,
             notif: this.state.isSwitchOn
         };
-        db.ref('users/UID/Appointment').push(event)
+        this.appointRef.push(event)
             .catch(err => Alert.alert('Error', err))
             .then(() => {
                 this.setState({ _isLoading: false })

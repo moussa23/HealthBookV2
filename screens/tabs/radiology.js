@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { StyleSheet, Text, View, TouchableOpacity, Image, FlatList,Alert } from 'react-native'
 import { Ionicons, FontAwesome5, AntDesign } from '@expo/vector-icons';
 import { Avatar } from 'react-native-paper'
-import { db, storage } from '../../API/firebase'
+import { db, storage,auth } from '../../API/firebase'
 import * as ImagePicker from 'expo-image-picker';
 import Swipeout from 'react-native-swipeout';
 import IMG from '../../assets/radiology.png'
@@ -12,7 +12,8 @@ import AppButton from '../../components/button'
 import AppInput from '../../components/textInput'
 
 export default class radiology extends Component {
-    radiologyRef = db.ref('users/UID/radiology')
+    user=auth.currentUser
+    radiologyRef = db.ref('users/'+this.user.uid+'/radiology')
 
     constructor() {
         super()
@@ -116,7 +117,7 @@ export default class radiology extends Component {
             },
             {
                 text:'Supprimer',
-                onPress:()=> db.ref('users/UID/radiology/'+key).remove()
+                onPress:()=> this.radiologyRef.child(key).remove()
             }
         ])
        

@@ -3,7 +3,7 @@ import { Text, StyleSheet, View, TouchableOpacity, Alert, Image, FlatList } from
 import { Avatar } from 'react-native-paper'
 import { Ionicons, Fontisto, AntDesign } from '@expo/vector-icons';
 import Modal from 'react-native-modal';
-import { db, storage } from '../../API/firebase';
+import { db, storage,auth } from '../../API/firebase';
 import IMG from '../../assets/hospital.png';
 import * as ImagePicker from 'expo-image-picker';
 import Swipeout from 'react-native-swipeout';
@@ -13,8 +13,9 @@ import AppInput from '../../components/textInput'
 
 
 export default class analysis extends Component {
-    analysisRef = db.ref('users/UID/analysis');
-
+    user = auth.currentUser
+    analysisRef = db.ref('users/'+this.user.uid+'/analysis');
+    
 
     constructor() {
         super();
@@ -43,7 +44,7 @@ export default class analysis extends Component {
 
     submitAnalysis = () => {
         this.setState({ loading: true })
-        db.ref('users/UID/analysis').push({
+        this.analysisRef.push({
             title: this.state.titre,
             price: this.state.prix,
             img: this.state.source
@@ -119,7 +120,7 @@ export default class analysis extends Component {
             },
             {
                 text:'Supprimer',
-                onPress:()=> db.ref('users/UID/analysis/'+key).remove()
+                onPress:()=> this.analysisRef.child(key).remove()
             }
         ])
        

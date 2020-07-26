@@ -24,6 +24,7 @@ const button = (props) => {
                 colors: { primary: '#ff7539' },
                 fonts: { medium: { fontWeight: 'bold' } }
             }}
+            disabled={props.disabled}
         >
             {props.title}
         </Button>
