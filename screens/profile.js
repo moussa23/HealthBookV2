@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Text, StyleSheet, View } from 'react-native'
 import FieldSet from 'react-native-fieldset';
 
+import AppButton from '../components/button'
 export default class profile extends Component {
     render() {
 
