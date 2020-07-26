@@ -170,13 +170,15 @@ export default class signUp extends Component {
                                 value="Masculin"
                                 status={checked === 'Masculin' ? 'checked' : 'unchecked'}
                                 onPress={() => { this.setState({ checked: 'Masculin' }); }}
-                            /><Text style={styles.genderText} > Masculin </Text>
+                            /><Text style={styles.genderText} >
+                                 <FontAwesome style={{ paddingLeft: 10 }} name='venus-mars' size={30} color='#00695c' /> Masculin </Text>
                             <RadioButton
                                 theme={{ colors: { accent: '#ff7539' } }}
                                 value="Feminin"
                                 status={checked === 'Feminin' ? 'checked' : 'unchecked'}
                                 onPress={() => { this.setState({ checked: 'Feminin' }); }}
-                            /><Text style={styles.genderText} > Feminin </Text>
+                            /><Text style={styles.genderText} >
+                                <FontAwesome style={{ paddingLeft: 10 }} name='venus-mars' size={30} color='#00695c' /> Feminin </Text>
                         </RadioButton.Group>
                     </View>
 
